@@ -152,41 +152,41 @@ window.fbAsyncInit = function() {
 function shareToFacebook(reference){
   console.log("Sharing "+ reference);
 
-  // FB.login(function(response){
-  //   FB.api('/me/photos', 'post', {url: reference,message: "Shared via #FestPix"}, function(response){
-  //     if(response.id){
-  //       alert('Photo posted to facebook! Thanks for using FestPix');
-  //     } else {
-  //       alert("Error");
-  //       console.log(response);
-  //     }
-  //   })
-  // }, {scope: 'publish_actions'});
-
-
   FB.login(function(response){
-    if (response.authResponse) {
-      var wallPost = {
-        message: "Shared via #FestPix",
-        picture: reference
-      };
-      FB.api('/me/feed', 'post', wallPost , function(response) {
-        if (!response || response.error) {
-          alert('Failure! ' + response.status + ' You may logout once and try again');
-        } else {
-          alert('Success! Post ID: ' + response);
-        }
-      });
-    } else {
-      if (!response || response.error) {
-        alert('Failure! ' + response.error + ' You may logout once and try again');
-        console(response.error)
+    FB.api('/me/photos', 'post', {url: reference,message: "Shared via #FestPix"}, function(response){
+      if(response.id){
+        alert('Photo posted to facebook! Thanks for using FestPix');
       } else {
-        // alert('Success! Post ID: ' + response);
-        console(response);
+        alert("Error");
+        console.log(response);
       }
-    }
+    })
   }, {scope: 'publish_actions'});
+
+
+  // FB.login(function(response){
+  //   if (response.authResponse) {
+  //     var wallPost = {
+  //       message: "Shared via #FestPix",
+  //       picture: reference
+  //     };
+  //     FB.api('/me/feed', 'post', wallPost , function(response) {
+  //       if (!response || response.error) {
+  //         alert('Failure! ' + response.status + ' You may logout once and try again');
+  //       } else {
+  //         alert('Success! Post ID: ' + response);
+  //       }
+  //     });
+  //   } else {
+  //     if (!response || response.error) {
+  //       alert('Failure! ' + response.error + ' You may logout once and try again');
+  //       console(response.error)
+  //     } else {
+  //       // alert('Success! Post ID: ' + response);
+  //       console(response);
+  //     }
+  //   }
+  // }, {scope: 'publish_actions'});
    
 
   //  FB.ui({
